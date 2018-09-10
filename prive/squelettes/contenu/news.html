@@ -1,0 +1,54 @@
+[(#AUTORISER{voir,news,#ID_NEWS}|sinon_interdire_acces)]
+<BOUCLE_news(NEWS){id_news}{statut==.*}{si #ENV{exec}|=={news}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,news,#ID_NEWS})
+		[(#ID_NEWS|afficher_qui_edite{news}|non)
+			[(#URL_ECRIRE{news_edit,id_news=#ID_NEWS}|icone_verticale{<:news:icone_modifier_news:>,news,edit,right ajax preload})]
+		]
+		[(#ID_NEWS|afficher_qui_edite{news}|oui)
+			[(#URL_ECRIRE{news_edit,id_news=#ID_NEWS}|icone_verticale{#ID_NEWS|afficher_qui_edite{news},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#TITRE|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{news-24.png}|balise_img{news,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{news,#ID_NEWS}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/news,id=#ID_NEWS,id_news=#ID_NEWS,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,news,#ID_NEWS})
+	[(#ID_NEWS|afficher_qui_edite{news}|non)
+		[(#URL_ECRIRE{news_edit,id_news=#ID_NEWS}|icone_verticale{<:news:icone_modifier_news:>,news,edit,right ajax preload})]
+	]
+	[(#ID_NEWS|afficher_qui_edite{news}|oui)
+		[(#URL_ECRIRE{news_edit,id_news=#ID_NEWS}|icone_verticale{#ID_NEWS|afficher_qui_edite{news},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,news,id,#ID_NEWS},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+
+
+#SET{enfants,''}
+[(#VAL{prive/objets/contenu/news-enfants}|trouver_fond|oui)
+	[(#SET{enfants,[(#INCLURE{fond=prive/objets/contenu/news-enfants,id_news,env})]})]
+]
+[(#PIPELINE{affiche_enfants,[(#ARRAY{args,#ARRAY{exec,news,id_news,#ID_NEWS,objet,news,id_objet,#ID_NEWS},data,#GET{enfants}})]})]
+
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_news>
+[(#ENV**{exec}|=={news_edit}|?{#INCLURE{fond=prive/squelettes/contenu/news_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_news>

@@ -1,0 +1,68 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+	<h3 class="titrem"><img src="#CHEMIN_IMAGE{news-24.png}" class="cadre-icone" /><:news:info_contenu_actu:></h3>
+
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	<form method="post" action="#ENV{action}">
+	<div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+
+
+		<div class="editer-groupe">
+			#SET{name,soustitre}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			<div class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+				<label for="#GET{name}"><:info_sous_titre:></label>[
+				<span class='erreur_message'>(#GET{erreurs})</span>
+				]<div class="choix">
+					<input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+					[(#CONFIG{news/soustitre}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+					&nbsp;&nbsp;
+					<input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+					[(#CONFIG{news/soustitre}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+				</div>
+			</div>
+
+			#SET{name,categories}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			<div class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+				<label for="#GET{name}"><:news:info_categories:></label>[
+				<span class='erreur_message'>(#GET{erreurs})</span>
+				]<div class="choix">
+					<input type="checkbox" name="#GET{name}" id="#GET{name}" value="actif"
+					[(#CONFIG{news/categories}|=={actif}|oui)checked="checked"] /><label for="#GET{name}"><:news:item_activer:></label>
+				</div>
+			</div>
+
+			#SET{name,texte}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			<div class="editer long_label editer_texte_actu[ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+				<label for="#GET{name}"><:info_texte:></label>[
+				<span class='erreur_message'>(#GET{erreurs})</span>
+				]<div class="choix">
+					<input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+					[(#CONFIG{news/#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+					&nbsp;&nbsp;
+					<input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+					[(#CONFIG{news/#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+				</div>
+			</div>
+
+			#SET{name,urlref}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			<div class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+				<label for="#GET{name}"><:info_urlref:></label>[
+				<span class='erreur_message'>(#GET{erreurs})</span>
+				]<div class="choix">
+					<input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+					[(#CONFIG{news/urlref}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+					&nbsp;&nbsp;
+					<input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+					[(#CONFIG{news/urlref}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+				</div>
+			</div>
+		</div>
+
+		<input type="hidden" name="_meta_casier" value="news" />
+		<p class="boutons"><span class="image_loading">&nbsp;</span><input type="submit" class="submit" value="<:bouton_enregistrer:>" /></p>
+	</div>
+	</form>
+</div>

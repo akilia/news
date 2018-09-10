@@ -1,0 +1,28 @@
+<BOUCLE_news(NEWS){id_news}{statut?}>
+
+[<div class="champ contenu_titre[ (#TITRE*|strlen|?{'',vide})]">
+	<label><:news:champ_titre_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{titre} titre">(#TITRE)</span>
+</div>]
+
+[<div class="champ contenu_soustitre[ (#SOUSTITRE*|strlen|?{'',vide})]">
+	<label><:news:champ_soustitre_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</span>
+</div>]
+
+[<div class="champ contenu_texte[ (#TEXTE*|strlen|?{'',vide})]">
+	<label><:news:champ_texte_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{texte} texte">(#TEXTE)</span>
+</div>]
+
+[<div class="champ contenu_lien_titre[ (#LIEN_TITRE*|strlen|?{'',vide})]">
+	<label><:news:champ_lien_titre_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{lien_titre} lien_titre">(#LIEN_TITRE)</span>
+</div>]
+
+[<div class="champ contenu_lien_url[ (#LIEN_URL*|strlen|?{'',vide})]">
+	<label><:news:champ_lien_url_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{lien_url} lien_url">(#LIEN_URL)</span>
+</div>]
+
+</BOUCLE_news>

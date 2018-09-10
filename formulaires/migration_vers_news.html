@@ -1,0 +1,14 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_news,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method="post" action="#ENV{action}"><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+
+		#SAISIE{radio, type, label=Quel objet voulez-vous migrer, datas=#ARRAY{breve, Brèves}}
+		
+		<p class="boutons"><input type="submit" class="submit" value="<:news:bouton_migrer:>" /></p>
+	</div></form>
+	]
+</div>

@@ -1,0 +1,86 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_news,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method="post" action="#ENV{action}"><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type="hidden" name="id_news" value="#ENV{id_news}" />
+		<div class="editer-groupe">
+ 
+			<div class="editer editer_titre obligatoire[ (#ENV**{erreurs}|table_valeur{titre}|oui)erreur]">
+				<label for="titre"><:info_titre:><em class="aide">#AIDER{titre}</em></label>[
+				<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{titre})</span>
+				]<input type='text' class='text' name='titre' id='titre'[ lang='(#LANGUE)'] value="[(#ENV**{titre,''})]"
+				placeholder="<:news:info_nouvelle_news|attribut_html:>" />
+			</div>
+
+			[(#CONFIG{news/soustitre}|=={oui}|oui)
+			<div class="editer editer_soustitre[ (#ENV**{erreurs}|table_valeur{soustitre}|oui)erreur]">
+				<label for="soustitre"><:texte_sous_titre:><em class="aide">#AIDER{soustitre}</em></label>[
+				<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{soustitre})</span>
+				]<input type='text' class='text' name='soustitre' id='soustitre'[ lang='(#LANGUE)'] value="[(#ENV**{soustitre})]" />
+			</div>]
+
+			[<div class="editer editer_rubrique[ (#ENV**{erreurs/id_parent}|oui)erreur]">
+					<label for="id_parent"><:titre_cadre_interieur_rubrique:></label>[
+					<span class="erreur_message">(#ENV**{erreurs/id_parent})</span>
+					]
+					(#VAL|chercher_rubrique{#ENV{id_news},#ENV{id_parent},'news',#ENV{id_secteur},'',0,form_simple})
+			</div>]
+
+			[(#CONFIG{news/categories}|=={actif}|et{#AUTORISER{voir,categorie}}|oui)
+				[(#INCLURE{fond=formulaires/inc-categories,env}{type_selecteur=#CONFIG{news/affichage_categories}})]
+			]
+
+			[(#CONFIG{news/texte}|=={oui}|oui)
+			<div class="editer editer_texte obligatoire[ (#ENV**{erreurs}|table_valeur{texte}|oui)erreur]">
+				<label for="text_area"><:info_texte:><em class="aide">#AIDER{text_area}</em></label>[
+				<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{texte})</span>
+				][(#ENV**{_texte_trop_long,''})]
+				<textarea name='texte' id='text_area'[ lang='(#LANGUE)'] rows='[(#ENV**{config}|table_valeur{lignes}|plus{2})]' cols='40'>[(#ENV**{texte})]</textarea>
+			</div>]
+
+ 
+			[(#CONFIG{news/urlref}|=={oui}|oui)
+			<div class="editer editer_liens_sites fieldset">
+				<fieldset>
+					<h3 class="legend"><:entree_liens_sites:></h3>
+					<div class="editer-groupe">
+						<div class="editer editer_nom_site[ (#ENV**{erreurs}|table_valeur{nom_site}|oui)erreur]">
+							<label for="nom_site"><:info_titre:></label>[
+							<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{nom_site})</span>
+							]<input type='text' class='text' name='nom_site' id='nom_site'[ lang='(#LANGUE)'] value="[(#ENV**{nom_site})]" />
+						</div>
+						<div class="editer editer_url_site[ (#ENV**{erreurs}|table_valeur{url_site}|oui)erreur]">
+							<label for="url_site"><:info_url:></label>[
+							<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{url_site})</span>
+							]<input type='text' class='text' name='url_site' id='url_site' value="[(#ENV**{url_site})]" />
+						</div>
+					</div>
+				</fieldset>
+			</div>]
+
+			[(#SESSION{statut}|=={0minirezo}|oui)
+			<div class="editer editer_liens_sites fieldset">
+				<fieldset>
+					<div  class="editer-groupe">
+						<div class="editer long_label editer_statut obligatoire">
+							<label for='statut'><:news:texte_changer_statut_news:>
+							</label><select name='statut' id='statut' size='1'>
+								<option value='prop'[(#ENV**{statut}|=={prop}|?{' selected="selected"'})] style='background-color: white'><:texte_statut_en_cours_redaction:></option>
+								<option value='publie'[(#ENV**{statut}|=={publie}|?{' selected="selected"'})] style='background-color: #B4E8C5'><:texte_statut_publie:></option>
+								<option value='poubelle'[(#ENV**{statut}|=={poubelle}|?{' selected="selected"'})] class='danger'><:texte_statut_poubelle:></option>
+							</select>
+						</div>
+					</div>
+				</fieldset>
+			</div>]
+
+		</div>
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type="submit" class="submit" value="<:bouton_enregistrer:>" /></p>
+	</div></form>
+	]
+</div>

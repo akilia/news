@@ -1,0 +1,40 @@
+<BOUCLE_nb_items(NEWS)
+	{id_rubrique}
+	{statut == .*}{statut ?} 
+	{pagination 1}>
+	#SET{total,#GRAND_TOTAL}
+	#SET{lister,#PLAN_AFFICHER_LISTE}
+</BOUCLE_nb_items>
+
+[(#ENV{conteneur}|=={non}|non)
+	<ul class="menu-items news">
+		<li id="news-rubrique-#ID_RUBRIQUE"
+			class="item group[ (#GET{lister}|non)jstree-closed]"
+			data-jstree='{"type":"box_news"}' data-objet="news">
+			<strong>[(#GET{total}|objet_afficher_nb{news})]</strong>
+]
+
+			<B_items>
+				<ul class="menu-items news">
+			<BOUCLE_items(NEWS)
+				{id_rubrique}
+				{par titre}
+				{statut == .*}{statut ?} 
+				{si #GET{lister}}
+				>
+				<li id="news-#ID_NEWS" class="item" data-jstree='{"type":"news"}' data-objet="news">
+					<a href="[(#ID_NEWS|generer_url_entite{news})]"
+						[hreflang="(#ENV{lang}|=={#LANG}|non|?{#LANG})"]
+						title="[(#VAL{news}|objet_info{texte_objet}|_T) #ID_NEWS]">
+						 [(#STATUT|puce_statut{news}) ][(#TITRE|couper{80}|sinon{<:info_sans_titre:>})]
+					</a>
+				</li>
+			</BOUCLE_items>
+			</ul>
+			</B_items>
+
+[(#ENV{conteneur}|=={non}|non)
+		</li>
+	</ul>
+]
+</B_nb_items>

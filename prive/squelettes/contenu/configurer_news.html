@@ -1,0 +1,10 @@
+[(#AUTORISER{configurer,_news}|sinon_interdire_acces)]
+
+<h1 class="grostitre"><:news:titre_page_configurer_news:></h1>
+
+[(#REM) <!-- Barre d'onglets de premier niveau --> ]
+[(#VAL{news}|barre_onglets{configurer_news})]
+
+<div class="ajax">
+	#FORMULAIRE_CONFIGURER_NEWS
+</div>
