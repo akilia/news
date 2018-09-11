@@ -9,7 +9,6 @@
 	<div>
 		#ACTION_FORMULAIRE{#ENV{action}}
 
-
 		<div class="editer-groupe">
 			#SET{name,soustitre}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 			<div class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
@@ -21,16 +20,6 @@
 					&nbsp;&nbsp;
 					<input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
 					[(#CONFIG{news/soustitre}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-				</div>
-			</div>
-
-			#SET{name,categories}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-			<div class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-				<label for="#GET{name}"><:news:info_categories:></label>[
-				<span class='erreur_message'>(#GET{erreurs})</span>
-				]<div class="choix">
-					<input type="checkbox" name="#GET{name}" id="#GET{name}" value="actif"
-					[(#CONFIG{news/categories}|=={actif}|oui)checked="checked"] /><label for="#GET{name}"><:news:item_activer:></label>
 				</div>
 			</div>
 

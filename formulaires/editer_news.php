@@ -143,17 +143,5 @@ function formulaires_editer_news_traiter_dist($id_news='new', $id_rubrique=0, $r
 	
 	$id_news = $retour['id_news'];
 
-	// gestion des mots clés de la catégorie
-	include_spip('action/editer_mot');
-	$categories = _request('categorie');
-
-	// gérer le cas où une checkbox est décochée : violent, mais pas trouvé mieux
-	sql_delete('spip_mots_liens', "id_objet=".sql_quote($id_news)." AND objet='news'");
-	
-	if (is_array($categories) AND count($categories) > 0) {
-		foreach ($categories as $value) {
-			mot_associer($value, array('news'=>$id_news));
-		}
-	}
 	return $retour;
 }
