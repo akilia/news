@@ -1,28 +1,34 @@
 [(#SET{defaut_tri,#ARRAY{
+	rang,1,
 	titre,1, 
 	date,-1, 
 	id_news,1,
 	points,-1
-}})]<B_liste_news>
+}})]
+#SET{activer_rang, #ENV{id_rubrique}|et{#VAL{news}|in_array{#RANG_LISTE_OBJETS}} }
+[(#GET{activer_rang}|oui) [(#VAL{rang}|setenv{par})] #SET{tri,rang} ]
+
+<B_liste_news>
 #ANCRE_PAGINATION
 <div class="liste-objets news">
-<table class="spip liste">
+<table class="spip liste" data-objet="news">
 	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{news:info_1_news,news:info_nb_news}})</strong></caption>]
 	<thead>
 		<tr class="first_row">
-			<th class="picto" scope="col"></th>
+			[(#GET{activer_rang}|oui)<th class="rang" scope="col">[(#TRI{rang,<span title="<:rang:lien_trier_rang|attribut_html:>"><:rang:info_rang_abbr:></span>,ajax})]</th>]
 			<th class="statut" scope="col">[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
-			<th class="titre" scope="col">[(#TRI{titre,<:news:champ_titre_label:>,ajax})]</th>
+			<th class="titre" scope="col" colspan='2'>[(#TRI{titre,<:news:champ_titre_label:>,ajax})]</th>
 			<th class="date" scope="col">[(#TRI{date,<:date:>,ajax})]</th> 
-			<th class="id" scope="col">[(#TRI{id_news,<:info_numero_abbreviation:>,ajax})]</th>
+			<th class="id" scope="col">[(#TRI{id_news,<:rang:info_id:>,ajax})]</th>
 		</tr>
 	</thead>
 	<tbody>
 	<BOUCLE_liste_news(NEWS){id_news?}{id_rubrique?}{id_secteur?}{id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num titre},#GET{defaut_tri}}{par titre}{pagination #ENV{nb,10}}>
-		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
-			<td class="picto">[(#CHEMIN_IMAGE{news-16.png}|balise_img)]</td>
+		<tr [(#GET{activer_rang}|oui)data-id_objet="#ID_NEWS"] class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
+			[(#GET{activer_rang}|oui)<td class="rang">[(#RANG).]</td>]
 			<td class="statut">[(#STATUT|puce_statut{news,#ID_NEWS,#ID_RUBRIQUE})]</td> 
-			<td class="titre principale">[(#LOGO_NEWS|image_reduire{20,26})]<a href="[(#ID_NEWS|generer_url_entite{news})]" title="<:info_numero_abbreviation|attribut_html:> #ID_NEWS">[(#RANG). ]#TITRE</a></td>
+			<td class="titre principale"[(#LOGO_NEWS_NORMAL|non)colspan='2']><a href="[(#ID_NEWS|generer_url_entite{news})]" title="<:info_numero_abbreviation|attribut_html:> #ID_NEWS">#TITRE</a></td>
+			[<td class='logo'>(#LOGO_NEWS_NORMAL|image_reduire{90,70})</td>]
 			<td class="date secondaire">[(#DATE|affdate_jourcourt)]</td> 
 			<td class="id">[(#AUTORISER{modifier,news,#ID_NEWS}|?{
 				<a href="[(#URL_ECRIRE{news_edit,id_news=#ID_NEWS})]">#ID_NEWS</a>,

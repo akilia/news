@@ -1,7 +1,7 @@
 #FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
 <div class="nettoyeur"></div>
 
-<INCLURE{fond=prive/objets/liste/newss, par=titre, env, ajax, sinon=<:news:info_aucun_news:>}>
+<INCLURE{fond=prive/objets/liste/news, par=date, env, ajax, sinon=<:news:info_aucun_news:>}>
 
 [(#AUTORISER{creer,news})
 	[(#URL_ECRIRE{news_edit,new=oui}|icone_verticale{<:news:icone_creer_news:>,news,new,right})]
