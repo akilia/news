@@ -27,6 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_aucun_news' => 'Aucune actu',
 	'info_nb_news' => '@nb@ actus',
 	'info_categories' 	=> 'Catégories',
+	'info_contenu_actu' 	=> 'Contenu des actualités',
 	'info_nb_actualites' => '@nb@ actualités',
 	'info_nb_categories' => '@nb@ catégories',
 	'info_news_auteur' => 'Les actus de cet auteur',
@@ -34,7 +35,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_activer'		=> 'Activer',
 
 	// O
-	'onglet_news_configurer' => 'Contenu des Actualités',
+	'onglet_news_configurer' => 'Configuration',
 	'onglet_news_configurer_outils' => 'Outils',
 
 	// R
