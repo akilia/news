@@ -21,5 +21,5 @@ Il est possible de configurer les champs nécesssaire dans le formulaire d'édit
 - Zcore : les squelettes publics proposés sont fait pour être utilisés avec zcore;
 - Compositions
 
-##TODO's
+## TODO's
 Gestion de la migration  "Brèves -> News" en reprennant le code de https://contrib.spip.net/Conversion-des-breves-en-articles
