@@ -21,23 +21,33 @@ if (!defined('_ECRIRE_INC_VERSION')) {
  * @return array       Données du pipeline
 **/
 function news_affiche_enfants($flux) {
-	if ($e = trouver_objet_exec($flux['args']['exec'])
-		AND $e['type'] == 'rubrique'
-		AND $e['edition'] == false) {
+	if ($e = trouver_objet_exec($flux['args']['exec']) and $e['edition'] == false) {
+		$id_objet = $flux['args']['id_objet'];
 
-		$id_rubrique = $flux['args']['id_rubrique'];
-		$lister_objets = charger_fonction('lister_objets', 'inc');
+		if ($e['type'] == 'rubrique') {
 
-		$bouton = '';
-		if (autoriser('creernewsdans', 'rubrique', $id_rubrique)) {
-			$bouton .= icone_verticale(_T("news:icone_creer_news"), generer_url_ecrire("news_edit", "id_rubrique=$id_rubrique"), "news-24.png", "new", "right")
-					. "<br class='nettoyeur' />";
+			$flux['data'] .= recuperer_fond(
+				'prive/objets/liste/news',
+				array(
+					'titre' => _T('news:titre_news_rubrique'), 
+					'id_rubrique' => $id_objet,
+					'par' 			=> 'date'
+				)
+			);
+
+			if (autoriser('creernewsdans', 'rubrique', $id_objet)) {
+				include_spip('inc/presentation');
+				$flux['data'] .= icone_verticale(
+					_T("news:icone_creer_news"),
+					generer_url_ecrire("news_edit", "id_rubrique=$id_objet"), 
+					"news-24.png",
+					"new",
+					"right"
+				) . "<br class='nettoyeur' />";
+			}
 		}
-
-		$flux['data'] .= $lister_objets('news', array('titre'=>_T('news:titre_news_rubrique') , 'id_rubrique'=>$id_rubrique, 'par'=>'date'));
-		$flux['data'] .= $bouton;
-
 	}
+	
 	return $flux;
 }
 
