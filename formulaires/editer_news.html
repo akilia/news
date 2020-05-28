@@ -29,6 +29,14 @@
 					(#VAL|chercher_rubrique{#ENV{id_news},#ENV{id_parent},'news',#ENV{id_secteur},'',0,form_simple})
 			</div>]
 
+			[(#CONFIG{news/chapo}|=={oui}|oui)
+			<div class="editer editer_chapo[ (#ENV**{erreurs}|table_valeur{chapo}|oui)erreur]">
+				<label for="chapo"><:info_chapeau:><em class="aide">#AIDER{chapo}</em></label>[
+				<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{chapo})</span>
+				]<textarea name='chapo' id='chapo'[ lang='(#LANGUE)'] rows='8'>[(#ENV**{chapo})]</textarea>
+			</div>]
+
+
 			[(#CONFIG{news/texte}|=={oui}|oui)
 			<div class="editer editer_texte obligatoire[ (#ENV**{erreurs}|table_valeur{texte}|oui)erreur]">
 				<label for="text_area"><:info_texte:><em class="aide">#AIDER{text_area}</em></label>[

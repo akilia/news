@@ -29,6 +29,10 @@ function news_upgrade($nom_meta_base_version, $version_cible) {
 	$maj['create'] = array( array('maj_tables', array('spip_news')), 
 							array('news_init_metas'));
 
+	$maj['1.0.1'] = array(
+		array('sql_alter',"TABLE `spip_news` ADD `chapo` text NOT NULL DEFAULT '' AFTER `soustitre`")
+	);
+
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
@@ -37,10 +41,7 @@ function news_upgrade($nom_meta_base_version, $version_cible) {
  * Déclare la configuration de News pas défaut
 **/
 function news_init_metas() {
-	// par défaut, le champ texte est activé
 	ecrire_config("news/texte", 'oui');
-	// par défaut l'affichage des catégories est en boutons radio
-	ecrire_config("news/affichage_categories", 'radio');
 }
 
 /**
