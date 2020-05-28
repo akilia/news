@@ -1,19 +1,20 @@
 <BOUCLE_contexte(NEWS){id_news}>
-<article class="actus">
+<article class="container">
 	<header class="">
 		<h1>#TITRE</h1>
 		[<h2>(#SOUSTITRE)</h2>]
-		<img src="[(#LOGO_NEWS|extraire_attribut{src})]" alt="">
+		[<img src="(#LOGO_NEWS|extraire_attribut{src})" alt="">]
+		[<div class="chapo">(#CHAPO)</div>]
 	</header>
-	<main class="col-xs-12 col-sm-9 col-md-7 push-md-2">
-		[(#TEXTE)]
+	<main>
+		[<div class="texte">(#TEXTE)</div>]
 		[(#REM) Gestion du portfolio et des documents ]
 		[(#INCLURE{fond=inclure/documents,objet=news, id_objet=#ID_NEWS, id_rubrique='',env})]
 
 		[<div class="notes"><hr />(#NOTES)</div>]
 	</main>
 	<footer>
-		<time datetime='#DATE'>[(#DATE|affdate{'d/m/Y'})]</time>
+		<time datetime='#DATE'><:news:publier_le:>[ (#DATE|affdate{'d/m/Y'})]</time>
 	</footer>
 </article>
 </BOUCLE_contexte>

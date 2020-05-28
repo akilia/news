@@ -1,0 +1,10 @@
+<BOUCLE_contexte(NEWS){id_news}>
+<div class="actus">
+	<img src="[(#LOGO_NEWS|extraire_attribut{src})]" alt="Photo de #TITRE">
+	<h1>#TITRE</h1>
+	[<h2>(#SOUSTITRE)</h2>]
+	<:news:publie_le:><time datetime='#DATE'>[(#DATE|affdate{'d/m/Y'})]</time>
+	[<div class="chapo">(#CHAPO|sinon{#TEXTE|couper{200}})</div>]
+	<a class='btn' href="#URL_NEWS"><:news:read_more:></a>
+</div>
+</BOUCLE_contexte>

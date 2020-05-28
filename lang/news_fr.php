@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'champ_lien_titre_label' => 'Titre',
 	'champ_lien_url_label' => 'URL',
 	'champ_soustitre_label' => 'Soustitre',
+	'champ_chapo_label' => 'Chapeau',
 	'champ_texte_label' => 'Texte',
 	'champ_titre_label' => 'Titre',
 	'confirmer_supprimer_news' => 'Confirmez-vous la suppression de cette actu ?',
@@ -38,7 +39,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglet_news_configurer' => 'Configuration',
 	'onglet_news_configurer_outils' => 'Outils',
 
+	// P
+	'publie_le' => 'publié le',
+
 	// R
+	'read_mode' => 'Lire la suite…',
 	'retirer_lien_news' => 'Retirer cette actu',
 	'retirer_tous_liens_news' => 'Retirer toutes les actus',
 
