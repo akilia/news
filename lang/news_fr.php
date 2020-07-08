@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'champ_lien_titre_label' => 'Titre',
 	'champ_lien_url_label' => 'URL',
 	'champ_soustitre_label' => 'Soustitre',
+	'champ_ala_une_label' => 'Mettre cette actu à la Une ?',
 	'champ_chapo_label' => 'Chapeau',
 	'champ_texte_label' => 'Texte',
 	'champ_titre_label' => 'Titre',

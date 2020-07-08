@@ -23,12 +23,12 @@
 		</tr>
 	</thead>
 	<tbody>
-	<BOUCLE_liste_news(NEWS){id_news?}{id_rubrique?}{id_secteur?}{id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num titre},#GET{defaut_tri}}{par titre}{pagination #ENV{nb,10}}>
+	<BOUCLE_liste_news(NEWS){id_news?}{id_rubrique?}{id_secteur?}{id_mot?}{ala_une?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num titre},#GET{defaut_tri}}{par titre}{pagination #ENV{nb,10}}>
 		<tr [(#GET{activer_rang}|oui)data-id_objet="#ID_NEWS"] class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
 			[(#GET{activer_rang}|oui)<td class="rang">[(#RANG).]</td>]
 			<td class="statut">[(#STATUT|puce_statut{news,#ID_NEWS,#ID_RUBRIQUE})]</td> 
-			<td class="titre principale"[(#LOGO_NEWS_NORMAL|non)colspan='2']><a href="[(#ID_NEWS|generer_url_entite{news})]" title="<:info_numero_abbreviation|attribut_html:> #ID_NEWS">#TITRE</a></td>
-			[<td class='logo'>(#LOGO_NEWS_NORMAL|image_reduire{90,70})</td>]
+			<td class="titre principale"[(#LOGO_NEWS_NORMAL|non)colspan='2']><a href="[(#ID_NEWS|generer_url_entite{news})]" title="<:info_numero_abbreviation|attribut_html:> #ID_NEWS">#TITRE[<span class="soustitre">(#SOUSTITRE)</span>]</a></td>
+			[<td class='logo'>(#LOGO_NEWS_NORMAL|image_reduire{80,60})</td>]
 			<td class="date secondaire">[(#DATE|affdate_jourcourt)]</td> 
 			<td class="id">[(#AUTORISER{modifier,news,#ID_NEWS}|?{
 				<a href="[(#URL_ECRIRE{news_edit,id_news=#ID_NEWS})]">#ID_NEWS</a>,

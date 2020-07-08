@@ -33,6 +33,10 @@ function news_upgrade($nom_meta_base_version, $version_cible) {
 		array('sql_alter',"TABLE `spip_news` ADD `chapo` text NOT NULL DEFAULT '' AFTER `soustitre`")
 	);
 
+	$maj['1.0.2'] = array(
+		array('sql_alter',"TABLE `spip_news` ADD `ala_une` VARCHAR(3) DEFAULT 'non' AFTER `soustitre`")
+	);
+
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
