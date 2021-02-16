@@ -26,7 +26,8 @@ Par exemple
 …retournera tous les actus à la Une.
 
 ### Contenus des Actus
-Comme pour les articles, le formuliare d'édition d'une actu propose deux champs : Titre et Texte.
+Comme pour les articles, le formuliare d'édition d'une actu propose deux champs : *Titre* et *Texte*.
+
 Il est possible d'activer également les champs suivants :
 - soustitre
 - chapeau
