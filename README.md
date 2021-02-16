@@ -13,7 +13,6 @@ Il reprend plusieurs bonnes idées ici là :
 - Comme pour les articles, il est possible de configurer les champs dont vous avez besoins pour votre projet.
 
 ## Configurations
-Il est possible de configurer deux choses :
 
 ### Actus à la Une
 Dans l'edition d'une actu, pouvoir la taguer 'À la Une'.
@@ -26,7 +25,7 @@ Par exemple
 …retournera tous les actus à la Une.
 
 ### Contenus des Actus
-Comme pour les articles, le formuliare d'édition d'une actu propose deux champs : *Titre* et *Texte*.
+Comme pour les articles, le formulaire d'édition d'une actu propose deux champs : *Titre* et *Texte*.
 
 Il est possible d'activer également les champs suivants :
 - soustitre
