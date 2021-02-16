@@ -12,7 +12,7 @@ Il reprend plusieurs bonnes idées ici là :
 - Par opposition aux brèves, il n'est pas limités aux rubriques secteurs;
 - Comme pour les articles, il est possible de configurer les champs dont vous avez besoins pour votre projet.
 
-## ConfigurationS
+## Configurations
 Il est possible de configurer deux choses :
 
 ### Actus à la Une
