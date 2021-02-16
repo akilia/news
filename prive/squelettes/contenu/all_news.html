@@ -1,7 +1,9 @@
 #FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
 <div class="nettoyeur"></div>
 
-<INCLURE{fond=prive/objets/liste/news, par=date, ala_une=oui, titre=Les actus à la Une, env, ajax, sinon=<:news:info_aucun_news:>}>
+[(#CONFIG{news/ala_une}|=={oui}|oui)
+	<INCLURE{fond=prive/objets/liste/news, par=date, ala_une=oui, titre=Les actus à la Une, env, ajax, sinon=<:news:info_aucun_news_une:>}>
+]
 <INCLURE{fond=prive/objets/liste/news, par=date, ala_une=non, env, ajax, sinon=<:news:info_aucun_news:>}>
 
 [(#AUTORISER{creer,news})

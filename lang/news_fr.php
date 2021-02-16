@@ -22,19 +22,26 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'champ_titre_label' => 'Titre',
 	'confirmer_supprimer_news' => 'Confirmez-vous la suppression de cette actu ?',
 
+	'cfg_a_la_une' => 'Pouvoir mettre des actus ’À la Une’',
+
 	// I
 	'icone_creer_news' => 'Écrire une nouvelle actu',
 	'icone_modifier_news' => 'Modifier cette actu',
 	'info_1_news' => 'Une actu',
 	'info_aucun_news' => 'Aucune actu',
+	'info_aucun_news_une' => 'Aucune actu ’À la Une’',
 	'info_nb_news' => '@nb@ actus',
 	'info_categories' 	=> 'Catégories',
-	'info_contenu_actu' 	=> 'Contenu des actualités',
+	'info_contenu_actu' 	=> 'Les actualités',
 	'info_nb_actualites' => '@nb@ actualités',
 	'info_nb_categories' => '@nb@ catégories',
 	'info_news_auteur' => 'Les actus de cet auteur',
 	'info_nouvelle_news' => 'Nouvelle actu',
 	'item_activer'		=> 'Activer',
+
+	// L
+	'legend_news_a_la_une' => 'À la Une',
+	'legend_news_contenu' => 'Contenu des Actus',
 
 	// O
 	'onglet_news_configurer' => 'Configuration',

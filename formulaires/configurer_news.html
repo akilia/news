@@ -9,7 +9,28 @@
 	<div>
 		#ACTION_FORMULAIRE{#ENV{action}}
 
-		<div class="editer-groupe">
+		<fieldset>
+			<legend><:news:legend_news_a_la_une:></legend>
+			<div class="editer-groupe">
+				#SET{name,ala_une}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<div class="editer long_label editer_texte_actu[ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+					<label for="#GET{name}"><:news:cfg_a_la_une:></label>[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]<div class="choix">
+						<input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+						[(#CONFIG{news/#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+						&nbsp;&nbsp;
+						<input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+						[(#CONFIG{news/#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend><:news:legend_news_contenu:></legend>
+			<div class="editer-groupe">
+
 			#SET{name,soustitre}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 			<div class="editer long_label editer_texte_actu[ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 				<label for="#GET{name}"><:info_sous_titre:></label>[
@@ -22,20 +43,7 @@
 					[(#CONFIG{news/#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
 				</div>
 			</div>
-
-			#SET{name,ala_une}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-			<div class="editer long_label editer_texte_actu[ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-				<label for="#GET{name}"><:news:ala_une:></label>[
-				<span class='erreur_message'>(#GET{erreurs})</span>
-				]<div class="choix">
-					<input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-					[(#CONFIG{news/#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
-					&nbsp;&nbsp;
-					<input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-					[(#CONFIG{news/#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-				</div>
-			</div>
-
+			
 			#SET{name,chapo}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 			<div class="editer long_label editer_texte_actu[ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 				<label for="#GET{name}"><:info_chapeau:></label>[
@@ -75,6 +83,7 @@
 				</div>
 			</div>
 		</div>
+		</fieldset>
 
 		<input type="hidden" name="_meta_casier" value="news" />
 		<p class="boutons"><span class="image_loading">&nbsp;</span><input type="submit" class="submit" value="<:bouton_enregistrer:>" /></p>
