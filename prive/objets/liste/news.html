@@ -5,7 +5,7 @@
 	id_news,1,
 	points,-1
 }})]
-#SET{activer_rang, #ENV{id_rubrique}|et{#VAL{news}|in_array{#RANG_LISTE_OBJETS}} }
+#SET{activer_rang, #ENV{id_rubrique}|et{#VAL{news}|in_array{#RANG_LISTE_OBJETS}}|et{#AUTORISER{publierdans,rubrique,#ENV{id_rubrique}}} }
 [(#GET{activer_rang}|oui) [(#VAL{rang}|setenv{par})] #SET{tri,rang} ]
 
 <B_liste_news>
@@ -17,8 +17,9 @@
 		<tr class="first_row">
 			[(#GET{activer_rang}|oui)<th class="rang" scope="col">[(#TRI{rang,<span title="<:rang:lien_trier_rang|attribut_html:>"><:rang:info_rang_abbr:></span>,ajax})]</th>]
 			<th class="statut" scope="col">[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
-			<th class="titre" scope="col" colspan='2'>[(#TRI{titre,<:news:champ_titre_label:>,ajax})]</th>
-			<th class="date" scope="col">[(#TRI{date,<:date:>,ajax})]</th> 
+			<th class="titre principale" scope="col">[(#TRI{titre,<:news:champ_titre_label:>,ajax})]</th>
+			<th class='nologo'></th>
+			<th class="date secondaire" scope="col">[(#TRI{date,<:date:>,ajax})]</th> 
 			<th class="id" scope="col">[(#TRI{id_news,<:rang:info_id:>,ajax})]</th>
 		</tr>
 	</thead>
@@ -27,8 +28,8 @@
 		<tr [(#GET{activer_rang}|oui)data-id_objet="#ID_NEWS"] class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
 			[(#GET{activer_rang}|oui)<td class="rang">[(#RANG).]</td>]
 			<td class="statut">[(#STATUT|puce_statut{news,#ID_NEWS,#ID_RUBRIQUE})]</td> 
-			<td class="titre principale"[(#LOGO_NEWS_NORMAL|non)colspan='2']><a href="[(#ID_NEWS|generer_url_entite{news})]" title="<:info_numero_abbreviation|attribut_html:> #ID_NEWS">#TITRE[<span class="soustitre">(#SOUSTITRE)</span>]</a></td>
-			[<td class='logo'>(#LOGO_NEWS_NORMAL|image_reduire{80,60})</td>]
+			<td class="titre principale"><a href="[(#ID_NEWS|generer_url_entite{news})]" title="<:info_numero_abbreviation|attribut_html:> #ID_NEWS">#TITRE[<span class="soustitre">(#SOUSTITRE)</span>]</a></td>
+			<td class='[(#LOGO_NEWS_NORMAL|?{logo,nologo})]'>[(#LOGO_NEWS_NORMAL|image_passe_partout{70,70})]</td>
 			<td class="date secondaire">[(#DATE|affdate_jourcourt)]</td> 
 			<td class="id">[(#AUTORISER{modifier,news,#ID_NEWS}|?{
 				<a href="[(#URL_ECRIRE{news_edit,id_news=#ID_NEWS})]">#ID_NEWS</a>,
@@ -38,7 +39,7 @@
 	</BOUCLE_liste_news>
 	</tbody>
 </table>
-[<p class="pagination">(#PAGINATION{prive})</p>]
+[<nav class='pagination'>(#PAGINATION{#ENV{pagination,prive}})</nav>]
 </div>
 </B_liste_news>[
 <div class="liste-objets news caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
